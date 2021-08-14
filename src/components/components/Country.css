@@ -1,0 +1,60 @@
+.grid-container{
+    display: grid;
+
+}
+.country-container{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 250px;
+    min-height: 300px;
+    margin-bottom: 5rem;
+}
+.dark-mode .country-container{
+    background-color: var(--Dark-Blue);
+}
+.link-to-details{
+    text-decoration: none;
+    color: black;
+}
+
+.dark-mode .link-to-details{
+    color: white;
+}
+
+.country-flag{
+    width: 100%;
+}
+.country-info{
+    padding: 1.5rem;
+}
+h3{
+    margin-bottom: 1rem;
+}
+p{
+    margin-bottom: 0.25rem;
+}
+
+@media screen and (min-width:600px ) {
+
+    .grid-container{
+        grid-template-columns: repeat(2, auto);
+        grid-gap: 20px;
+    }
+    
+}
+@media screen and (min-width:850px ) {
+
+    .grid-container{
+        grid-template-columns: repeat(3, auto);
+        grid-gap: 40px;
+    }
+    
+}
+@media screen and (min-width:1200px ) {
+
+    .grid-container{
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+    }
+    
+}
