@@ -63,10 +63,10 @@ function App() {
         <Router>
           <Routes>
             
-            <Route exact path = "/details">  
-              < Details countries = {countries} allData = {allData} backClickCountry = {backClickCountry}
+            <Route exact path = "/details/:name" children = {< Details countries = {countries} allData = {allData} backClickCountry = {backClickCountry}
                
-              />                 
+               /> }>  
+                              
             </Route>
             <Route exact path = "/">
 
