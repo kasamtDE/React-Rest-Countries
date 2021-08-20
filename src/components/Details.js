@@ -1,4 +1,4 @@
-import React,{useContext, useState,useEffect} from 'react'
+import React,{useContext} from 'react'
 import Header from './Header'
 import {BiLeftArrowAlt} from "react-icons/bi"
 import {Link,useParams } from 'react-router-dom'
@@ -43,12 +43,12 @@ export default function Details() {
             <>
              {isLoading ? "Loading..." :
             <>
-                {allData.filter(country => country.name === name).map(country =>
+                {allData.filter(country => country.name === name).map((country,index) =>
                     
                     {
 
                         return(
-                            <>
+                            <div key = {index} >
                                 < Header />
                                     <div className="detailed-container">
                                         <button onClick = { () => {backClickCountry()}} className="back-button" >
@@ -107,7 +107,7 @@ export default function Details() {
                                             </div>
                                         </div>
                                     </div>
-                            </>
+                            </div>
 
                         )
                     })}     

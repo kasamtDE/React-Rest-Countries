@@ -19,7 +19,6 @@ export function AppContext({children}) {
         fetch(url)
         .then(response => response.json())
         .then(data => {return (setCountries(data),setAllData(data))}) 
-        console.log(allData)
         setIsLoading(false)
   
           
