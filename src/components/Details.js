@@ -60,7 +60,7 @@ export default function Details() {
                                         </button>
 
                                         <div className = "country-details-container">
-                                            <img className ="detailed-flag" src = {country.flag}></img>
+                                            <img className ="detailed-flag" src = {country.flag} alt = "detailed-country-flag"></img>
                                             <div className = "country-details">
 
                                                 <h3 className = "detailed-country-name">{country.name}</h3>

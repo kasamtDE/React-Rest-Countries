@@ -14,7 +14,7 @@ function App() {
           <Router>
             <Routes>
                 
-                <Route exact path = "/details/:name" >  
+                <Route path = "/details/:name" >  
                     < Details />          
                 </Route>
                 <Route exact path = "/">

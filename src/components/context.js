@@ -18,10 +18,9 @@ export function AppContext({children}) {
   
         fetch(url)
         .then(response => response.json())
-        .then(data => {return (setCountries(data),setAllData(data))}) 
+        .then(data =>  {return (setCountries(data),setAllData(data))}) 
         setIsLoading(false)
-  
-          
+            
       },[])
 
     
