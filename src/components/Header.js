@@ -6,6 +6,7 @@ export default function Header() {
 
     const [mode , setMode] = useState(true)
 
+
     const toggleMode = () =>{
 
 
@@ -31,7 +32,7 @@ export default function Header() {
         <div>
             <header>        
                 <div className = "navbar">
-                    <h2>Where in the World? </h2>
+                    <h2 >Where in the World? </h2>
                         
                     <div className = "mode-container"> <button className ="btn" onClick = { () => toggleMode()}>
                             <BsMoon className = "dark" />

@@ -1,9 +1,14 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import "./Search.css"
 import {AiOutlineSearch,AiOutlineArrowDown} from "react-icons/ai"
+import {myContext} from "./context"
 
 
-export default function Search({filterCountries,filterRegions,allData}) {
+
+export default function Search() {
+
+    const {filterCountries,allData,filterRegions} = useContext(myContext)
+
     
 
 

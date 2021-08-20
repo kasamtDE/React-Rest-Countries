@@ -24,11 +24,11 @@ header{
 }
 
 .navbar{
-    width: 80%;
+    width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: 1rem;
     margin: 0 auto;
 
 }
@@ -68,4 +68,12 @@ main{
 .dark-mode{
     background-color: var(--Very-Dark-Blue);
     color: white;
+}
+
+@media  screen and (min-width:600px) {
+
+    .navbar{
+        width: 80%;
+    }
+    
 }

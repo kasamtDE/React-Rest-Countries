@@ -4,7 +4,9 @@ import Search from "./Search.js"
 import Header from './Header.js'
 import "./Home.css"
 
-export default function Home({countries,filterCountries,filterRegions,allData,handleCountryClick}) {
+export default function Home() {
+
+    
     
 
     return (
@@ -13,10 +15,10 @@ export default function Home({countries,filterCountries,filterRegions,allData,ha
                 < Header  />           
                 <main>
                     <div>
-                        <Search countries = {countries} filterCountries = {filterCountries} filterRegions = {filterRegions} allData = {allData} />
+                        <Search  />
                     </div>
                     <div className="country-main-container">
-                        < Country countries = {countries} handleCountryClick = {handleCountryClick}  />
+                        < Country />
                     </div>
                 </main>
             </div>

@@ -40,7 +40,7 @@
     width: 100%;
     max-height: 400px;
     margin-bottom: 2rem;
-    max-width: 800px;
+    max-width: 600px;
 }
 .detailed-country-name{
     margin-bottom: 2rem;
@@ -65,11 +65,12 @@
     margin-bottom: 4rem;
     margin-top: 1rem;
 }
+.link-to-border{
+    margin: 0 0.4rem;
+}
 .borders{
-    padding: 0.2rem 1rem;
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
     color: gray;
-    margin: 0.4rem;
     background: transparent;
     border:none;
 }
@@ -80,10 +81,11 @@
 p,div{
     font-size: 0.9rem;
 }
+
 .navbar h2{
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
-@media  screen and (min-width:800px) {
+@media  screen and (min-width:940px) {
     .navbar h2{
         font-size: 1.3rem;
     }
@@ -94,7 +96,7 @@ p,div{
         flex-direction: row;
     }
     .detailed-flag{
-        width: 40%;
+        width: 100%;
         max-height: 300px;
         margin-right: 3rem;
         max-width: 400px;

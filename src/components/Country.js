@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Link} from "react-router-dom"
+import {myContext} from "./context"
 import "./Country.css"
 
-export default function Country({countries,handleCountryClick}) {
-    
+export default function Country() {
+
+    const {countries,handleCountryClick} = useContext(myContext)
+
     
     return (
         <div >          
