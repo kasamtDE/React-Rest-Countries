@@ -51,7 +51,14 @@ export function AppContext({children}) {
         setCountries(country)
   
       }
-  
+      
+      const getDetailsPath = (countryName) =>{
+
+        let path = countryName.replace(/\s/g,"")
+
+        return path
+
+    }
       
   
       
@@ -68,6 +75,7 @@ export function AppContext({children}) {
             ,filterCountries
             ,isLoading
             ,setIsLoading
+            ,getDetailsPath
         }}>
           {children}
         </myContext.Provider>

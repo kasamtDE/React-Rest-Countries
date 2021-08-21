@@ -1,11 +1,13 @@
 import React,{useContext} from 'react'
-import {Link} from "react-router-dom"
+import {Link,useParams} from "react-router-dom"
 import {myContext} from "./context"
 import "./Country.css"
 
 export default function Country() {
 
-    const {countries,handleCountryClick} = useContext(myContext)
+    const {countries,handleCountryClick,getDetailsPath} = useContext(myContext)
+
+   
 
     
     return (
@@ -15,7 +17,7 @@ export default function Country() {
 
                         return( 
                                 <div onClick = {() => handleCountryClick(country)} key = {country.name} className = "country-container"> 
-                                    <Link  className = "link-to-details" to = {`/details/${country.name}`} >
+                                    <Link  className = "link-to-details" to = {"/details/"+ getDetailsPath(`${country.name}`)} >
                                         <img className = "country-flag" src = {country.flag} alt = "country-flag"></img>
                                         <div className = "country-info"> 
                                             <h3>{country.name}</h3>

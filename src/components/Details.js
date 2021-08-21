@@ -8,7 +8,7 @@ import "./Details.css"
 export default function Details() {
 
 
-    const {allData,setCountries,isLoading} = useContext(myContext)
+    const {allData,setCountries,isLoading,getDetailsPath} = useContext(myContext)
 
 
     const {name} = useParams()
@@ -24,11 +24,12 @@ export default function Details() {
 
     const getPath = (code) =>{
 
-        return allData.filter(country => country.alpha3Code.includes(`${code}`))[0].name
+        return allData.filter(country => country.alpha3Code.includes(`${code}`))[0].name.replace(/\s/g,"")
 
 
 
     }
+
 
 
     const backClickCountry = () =>{
@@ -43,7 +44,7 @@ export default function Details() {
             <>
              {isLoading ? "Loading..." :
             <>
-                {allData.filter(country => country.name === name).map((country,index) =>
+                {allData.filter(country => getDetailsPath(`${country.name}`) === name).map((country,index) =>
                     
                     {
 
