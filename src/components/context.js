@@ -14,7 +14,7 @@ export function AppContext({children}) {
 
         setIsLoading(true)
   
-        const url = "https://restcountries.eu/rest/v2/all"
+        const url = "https://restcountries.com/v3.1/all"
   
         fetch(url)
         .then(response => response.json())
