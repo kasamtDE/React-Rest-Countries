@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import {Link,useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 import {myContext} from "./context"
 import "./Country.css"
 
@@ -16,11 +16,11 @@ export default function Country() {
                     {countries.map((country) =>{
 
                         return( 
-                                <div onClick = {() => handleCountryClick(country)} key = {country.name} className = "country-container"> 
-                                    <Link  className = "link-to-details" to = {"/details/"+ getDetailsPath(`${country.name}`)} >
-                                        <img className = "country-flag" src = {country.flag} alt = "country-flag"></img>
+                                <div onClick = {() => handleCountryClick(country)} key = {country.name.common} className = "country-container"> 
+                                    <Link  className = "link-to-details" to = {"/details/"+ getDetailsPath(`${country.name.common}`)} >
+                                        <img className = "country-flag" src = {country.flags.svg} alt = "country-flag"></img>
                                         <div className = "country-info"> 
-                                            <h3>{country.name}</h3>
+                                            <h3>{country.name.common}</h3>
                                             <p>Population: {country.population} </p> 
                                             <p>Region: {country.region} </p>
                                             <p>Capital: {country.capital} </p> 

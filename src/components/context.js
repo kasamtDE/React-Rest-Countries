@@ -10,22 +10,31 @@ export function AppContext({children}) {
     const [allData, setAllData] = useState([])
     const [isLoading , setIsLoading] = useState(false)
 
+    const  fetchData =  async () =>{
+      setIsLoading(true)  
+
+      const url = "https://restcountries.com/v3.1/all"
+
+      const response = await fetch(url)
+      const data = await response.json().then(data => (setAllData(data),setCountries(data)))
+      setIsLoading(false)
+      return data
+
+    }
+
     useEffect( () =>{
 
-        setIsLoading(true)
-  
-        const url = "https://restcountries.com/v3.1/all"
-  
-        fetch(url)
-        .then(response => response.json())
-        .then(data =>  {return (setCountries(data),setAllData(data))}) 
-        setIsLoading(false)
-            
-      },[])
+        fetchData()
+        
+
+    },[])
+
+      
+         
 
     
     const filterCountries = (value) =>{
-        const filteredArr = allData.filter((country) => country.name.toLowerCase().includes(`${value.toLowerCase()}`))
+        const filteredArr = allData.filter((country) => country.name.common.toLowerCase().includes(`${value.toLowerCase()}`))
   
         setCountries(filteredArr)
   
@@ -46,7 +55,6 @@ export function AppContext({children}) {
       }
   
       const handleCountryClick = (country) =>{
-  
   
         setCountries(country)
   

@@ -3,12 +3,13 @@ import Header from './Header'
 import {BiLeftArrowAlt} from "react-icons/bi"
 import {Link,useParams } from 'react-router-dom'
 import {myContext} from "./context"
+import HashLoader from "react-spinners/HashLoader"
 import "./Details.css"
 
 export default function Details() {
 
 
-    const {allData,setCountries,isLoading,getDetailsPath} = useContext(myContext)
+    const {allData,setCountries,isLoading,setIsLoading,getDetailsPath} = useContext(myContext)
 
 
     const {name} = useParams()
@@ -16,16 +17,16 @@ export default function Details() {
 
     const handleBorderCountry = (code) =>{
 
-        const borderCountry = allData.filter(country => country.alpha3Code.includes(`${code}`))
-    
-        setCountries(borderCountry[0])
+        const borderCountry = allData.filter(country =>country.cca3 === code)[0]
+        setCountries(borderCountry)
   
     }
 
     const getPath = (code) =>{
 
-        return allData.filter(country => country.alpha3Code.includes(`${code}`))[0].name.replace(/\s/g,"")
+        const getCountry = allData.filter(country => country.cca3.includes(code))
 
+        return getDetailsPath(getCountry[0].name.common)
 
 
     }
@@ -33,20 +34,19 @@ export default function Details() {
 
 
     const backClickCountry = () =>{
-  
-        setCountries(allData)
-          
+        setCountries(allData)      
     }
-  
-  
+    
     return (
         <div>
             <>
-             {isLoading ? "Loading..." :
+             {isLoading ? <div className = "loader"> <HashLoader color = {"#01F4C4"} loading={isLoading}  size={50} />
+                </div> :
             <>
-                {allData.filter(country => getDetailsPath(`${country.name}`) === name).map((country,index) =>
-                    
+                {allData.filter(country => getDetailsPath(`${country.name.common}`) === name).map((country,index) =>
                     {
+                        
+                        console.log(country)
 
                         return(
                             <div key = {index} >
@@ -61,40 +61,35 @@ export default function Details() {
                                         </button>
 
                                         <div className = "country-details-container">
-                                            <img className ="detailed-flag" src = {country.flag} alt = "detailed-country-flag"></img>
+                                            <img className ="detailed-flag" src = {country.flags.svg} alt = "detailed-country-flag" />
                                             <div className = "country-details">
-
-                                                <h3 className = "detailed-country-name">{country.name}</h3>
+                                                <h3 className = "detailed-country-name">{country.name.common}</h3>
                                                 <div className = "detailed-info">
                                                     <div className = "detailed-info-left">
-                                                        <p>Native Name: {country.nativeName} </p>
+                                                        <p>Native Name: {country.name.official}</p>
                                                         <p>Population: {country.population} </p>
-                                                        <p>Region: {country.region}  </p>
+                                                        <p>Region: {country.region}   </p>
                                                         <p>Sub Region: {country.subregion}  </p>
-                                                        <p>Capital: {country.capital}  </p>
                                                     </div>
 
                                                     <div className = "detailed-info-right">
-                                                        <p>Top Level Domain: {country.topLevelDomain}  </p>
-                                                        <div>Currencies: {country.currencies.map(country => 
-                                                        <span key = {country.code}> {country.code}  </span> ) }  </div>
+                                                        <div>Capital: {country.capital}  </div>
                                                         
-                                                        <div>Languages: {country.languages.map(country => 
-                                                            <span key = {country.name}> {country.name}  </span> ) } 
-
-                                        
+                                                        
+                                                        <div>Languages: {Object.values(country.languages).join(", ")}
                                                         </div>
+                                                       
                                                         
                                                     </div>
 
                                                 </div>
-                                                {country.borders.length > 0 ? <div className = "border-container">
+                                                {country.hasOwnProperty("borders") ? <div className = "border-container">
                                                     Border Countries:
                                                     {country.borders.map((code) => {
                                                         return(
                                                             
                                                             <Link key = {code} className = "link-to-border" to = 
-                                                            {`/details/${getPath(code)}`} >
+                                                            {`/details/${getPath(`${code}`)}`} >
                                                                 
                                                             
                                                                 <button className = "borders" onClick = {
@@ -103,7 +98,7 @@ export default function Details() {
                                                             
                                                         )
                                                     })}
-                                                </div> : ""}
+                                                </div> : <div className = "border-container"> <strong>No Border</strong> </div>}
 
                                             </div>
                                         </div>

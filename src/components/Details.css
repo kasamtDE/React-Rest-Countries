@@ -79,11 +79,17 @@
 }
 
 p,div{
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 .navbar h1{
     font-size: 0.8rem;
+}
+@media  screen and (min-width:450px) {
+
+    p,div{
+        font-size: 0.9rem;
+    }
 }
 @media  screen and (min-width:940px) {
     .navbar h1{
