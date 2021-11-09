@@ -16,8 +16,8 @@ export default function Country() {
                     {countries.map((country) =>{
 
                         return( 
-                                <div onClick = {() => handleCountryClick(country)} key = {country.name.common} className = "country-container"> 
-                                    <Link  className = "link-to-details" to = {"/details/"+ getDetailsPath(`${country.name.common}`)} >
+                                <div key = {country.name.common} className = "country-container"> 
+                                    <Link  onClick = {() => handleCountryClick(country)}   className = "link-to-details" to = {"/details/"+getDetailsPath(`${country.name.common}`)} >
                                         <img className = "country-flag" src = {country.flags.svg} alt = "country-flag"></img>
                                         <div className = "country-info"> 
                                             <h3>{country.name.common}</h3>
