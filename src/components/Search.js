@@ -29,7 +29,7 @@ export default function Search() {
         filterCountries(search)
 
 
-    },[search])
+    },[search, filterCountries])
 
     
 

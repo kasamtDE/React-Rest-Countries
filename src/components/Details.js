@@ -9,7 +9,7 @@ import "./Details.css"
 export default function Details() {
 
 
-    const {allData,setCountries,isLoading,setIsLoading,getDetailsPath} = useContext(myContext)
+    const {allData,setCountries,isLoading,getDetailsPath} = useContext(myContext)
 
 
     const {name} = useParams()
