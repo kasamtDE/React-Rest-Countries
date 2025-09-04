@@ -42,7 +42,9 @@ export default function Search() {
     }
 
     
-    const regions = ["All",...new Set(allData.map((item) => item.region))].filter(region => region.length >1)
+    const regions = allData && Array.isArray(allData) 
+        ? ["All",...new Set(allData.map((item) => item.region))].filter(region => region.length >1)
+        : ["All"]
 
   
     return (

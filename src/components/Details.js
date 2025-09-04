@@ -16,17 +16,23 @@ export default function Details() {
 
 
     const handleBorderCountry = (code) =>{
-
+        if (!allData || !Array.isArray(allData)) {
+            console.log('allData is not ready yet');
+            return;
+        }
         const borderCountry = allData.filter(country =>country.cca3 === code)[0]
         setCountries(borderCountry)
   
     }
 
     const getPath = (code) =>{
-
+        if (!allData || !Array.isArray(allData)) {
+            console.log('allData is not ready yet');
+            return '';
+        }
         const getCountry = allData.filter(country => country.cca3.includes(code))
 
-        return getDetailsPath(getCountry[0].name.common)
+        return getCountry.length > 0 ? getDetailsPath(getCountry[0].name.common) : '';
 
 
     }
@@ -34,7 +40,11 @@ export default function Details() {
 
 
     const backClickCountry = () =>{
-        setCountries(allData)      
+        if (allData && Array.isArray(allData)) {
+            setCountries(allData)
+        } else {
+            console.log('allData is not ready yet');
+        }
     }
     
     return (
@@ -43,7 +53,7 @@ export default function Details() {
              {isLoading ? <div className = "loader"> <HashLoader color = {"#01F4C4"} loading={isLoading}  size={50} />
                 </div> :
             <>
-                {allData.filter(country => getDetailsPath(`${country.name.common}`) === name).map((country,index) =>
+                {allData && Array.isArray(allData) ? allData.filter(country => getDetailsPath(`${country.name.common}`) === name).map((country,index) =>
                     {
                         
                         console.log(country)
@@ -83,7 +93,7 @@ export default function Details() {
                                                     </div>
 
                                                 </div>
-                                                {country.hasOwnProperty("borders") ? <div className = "border-container">
+                                                {country.hasOwnProperty("borders") && country.borders ? <div className = "border-container">
                                                     Border Countries:
                                                     {country.borders.map((code) => {
                                                         return(
@@ -106,7 +116,7 @@ export default function Details() {
                             </div>
 
                         )
-                    })}     
+                    }) : <div>Loading country details...</div>}     
                 
             </>
             

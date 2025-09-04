@@ -13,7 +13,7 @@ export default function Country() {
     return (
         <div >          
                 <div className = "grid-container">
-                    {countries.map((country) =>{
+                    {countries && Array.isArray(countries) ? countries.map((country) =>{
 
                         return( 
                                 <div key = {country.name.common} className = "country-container"> 
@@ -32,7 +32,7 @@ export default function Country() {
                         )
 
 
-                    })}
+                    }) : <div>Loading countries...</div>}
                     
                 </div>
                             

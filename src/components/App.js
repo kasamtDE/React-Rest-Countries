@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './Home'
 import Details from './Details'
 import {AppContext} from "./context"
@@ -12,17 +12,12 @@ function App() {
       <div className = "Wrapper">
         <AppContext>
           <Router>
-            <Switch>
+            <Routes>
                 
-                <Route path = "/details/:name" >  
-                    < Details />          
-                </Route>
-                <Route exact path = "/">
+                <Route path = "/details/:name" element={< Details />} />          
+                <Route path = "/" element={< Home />} />
 
-                 < Home  />
-
-                </Route>            
-            </Switch>
+            </Routes>
 
           </Router>
         </AppContext>

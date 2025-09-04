@@ -13,12 +13,20 @@ export function AppContext({children}) {
     const  fetchData =  async () =>{
       setIsLoading(true)  
 
-      const url = "https://restcountries.com/v3.1/all"
+      const url = "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3,subregion,languages,borders"
 
-      const response = await fetch(url)
-      const data = await response.json().then(data => (setAllData(data),setCountries(data)))
-      setIsLoading(false)
-      return data
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        setAllData(data)
+        setCountries(data)
+        setIsLoading(false)
+        return data
+      } catch (error) {
+        console.error('Error fetching data:', error)
+        setIsLoading(false)
+        return []
+      }
 
     }
 
@@ -34,6 +42,10 @@ export function AppContext({children}) {
 
     
     const filterCountries = (value) =>{
+        if (!allData || !Array.isArray(allData)) {
+            console.log('allData is not ready yet');
+            return;
+        }
         const filteredArr = allData.filter((country) => country.name.common.toLowerCase().includes(`${value.toLowerCase()}`))
   
         setCountries(filteredArr)
@@ -43,6 +55,10 @@ export function AppContext({children}) {
       
   
       const filterRegions = (region) =>{
+        if (!allData || !Array.isArray(allData)) {
+            console.log('allData is not ready yet');
+            return;
+        }
   
         if(region === "All"){
           setCountries(allData)
@@ -55,9 +71,11 @@ export function AppContext({children}) {
       }
   
       const handleCountryClick = (country) =>{
-  
-        setCountries(country)
-  
+
+        // This function seems to be for navigation, not for setting countries
+        // The countries state should remain as an array for the map function
+        console.log('Country clicked:', country)
+
       }
       
       const getDetailsPath = (countryName) =>{
