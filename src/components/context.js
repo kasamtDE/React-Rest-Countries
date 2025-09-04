@@ -1,4 +1,4 @@
-import {createContext,useState,useEffect} from 'react'
+import {createContext,useState,useEffect,useCallback} from 'react'
 
 export const myContext = createContext()
 
@@ -41,7 +41,7 @@ export function AppContext({children}) {
          
 
     
-    const filterCountries = (value) =>{
+    const filterCountries = useCallback((value) =>{
         if (!allData || !Array.isArray(allData)) {
             console.log('allData is not ready yet');
             return;
@@ -50,11 +50,11 @@ export function AppContext({children}) {
   
         setCountries(filteredArr)
   
-      }
+      }, [allData, setCountries])
   
       
   
-      const filterRegions = (region) =>{
+      const filterRegions = useCallback((region) =>{
         if (!allData || !Array.isArray(allData)) {
             console.log('allData is not ready yet');
             return;
@@ -66,9 +66,9 @@ export function AppContext({children}) {
         }
   
         const filteredRegion = allData.filter((country) => country.region === region)
-  
+        console.log(`Filtering by region: ${region}, found ${filteredRegion.length} countries`)
         setCountries(filteredRegion)
-      }
+      }, [allData, setCountries])
   
       const handleCountryClick = (country) =>{
 
